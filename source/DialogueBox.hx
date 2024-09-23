@@ -471,11 +471,6 @@ class DialogueBox extends FlxSpriteGroup
 			dialogueStarted = true;
 		}
 		
-		if(FlxG.keys.justPressed.SHIFT #if android || FlxG.android.justReleased.BACK #end && !isEnding){
-            isEnding = true;
-            endDialogue();
-        }
-		
 		#if mobile
         var jusTouched:Bool = false;
 
