@@ -18,7 +18,15 @@ class WarningState extends MusicBeatState
 	override function update(elapsed:Float) 
 	{
 		super.update(elapsed);
-		if (FlxG.keys.justPressed.ENTER){
+		#if mobile
+        var jusTouched:Bool = false;
+
+        for (touch in FlxG.touches.list)
+          if (touch.justPressed)
+            jusTouched = true;
+        #end
+		
+		if (FlxG.keys.justPressed.ENTER #if mobile || jusTouched #end){
 			FlxG.switchState(new MainMenuState());
 		}
 	}

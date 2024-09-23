@@ -470,8 +470,21 @@ class DialogueBox extends FlxSpriteGroup
 			startDialogue();
 			dialogueStarted = true;
 		}
+		
+		if(FlxG.keys.justPressed.SHIFT #if android || FlxG.android.justReleased.BACK #end && !isEnding){
+            isEnding = true;
+            endDialogue();
+        }
+		
+		#if mobile
+        var jusTouched:Bool = false;
 
-		if (FlxG.keys.justPressed.ANY  && dialogueStarted == true)
+        for (touch in FlxG.touches.list)
+          if (touch.justPressed)
+            jusTouched = true;
+        #end
+
+		if (FlxG.keys.justPressed.ANY #if mobile || jusTouched #end && dialogueStarted == true)
 		{
 			remove(dialogue);
 				
